@@ -1,14 +1,13 @@
 node {
     stage 'check environment'
-    sh "node -v"
-    sh "npm -v"
-    sh "ng -v"
+    //sh "node -v"
+    //sh "npm -v"
 
     stage 'checkout'
     checkout scm
 
     stage 'npm install'
-    sh "npm install"
+    //sh "npm install"
 
     stage 'build'
     def v = version()
