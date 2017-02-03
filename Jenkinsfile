@@ -17,7 +17,7 @@ node {
     
 
     stage 'Build docker image' 
-    	echo "Building docker image DOCKERUSER/ci-demo-node-app:$DOCKER_TAG"
+    	echo "Building docker image DOCKERUSER/ci-demo-node-app:${folderName(env.BRANCH_NAME)}"
 		//sh "docker build -t DOCKERUSER/ci-demo-node-app:$DOCKER_TAG docker/"
 
     stage 'Push docker image'
@@ -29,3 +29,12 @@ def version() {
   def matcher = readFile('package.json') =~ 'version": "(.+)",'
   matcher ? matcher[0][1] : null
 }
+def folderName(String branchName) {
+  switch(branchName) {
+    case "master":
+        return version();
+    case "develop":
+        return "develop";
+    default:
+       return branchName;
+  }
