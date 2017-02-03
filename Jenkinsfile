@@ -38,3 +38,4 @@ def folderName(String branchName) {
     default:
        return branchName;
   }
+}
